@@ -775,7 +775,7 @@ async function carregarHistorico(){
         <td>${a.tipo}</td>
         <td><span class="badge ${pBadge}">${a.prioridade}</span></td>
         <td style="font-variant-numeric:tabular-nums;font-weight:500">${fmtTime(a.tempo_segundos||0)}</td>
-        <td style="font-variant-numeric:tabular-nums;color:${pauseSeg>0?'var(--amber)':'var(--text3)';};font-weight:${pauseSeg>0?'500':'400'}">${pauseSeg>0?fmtTime(pauseSeg):'—'}</td>
+        <td style="font-variant-numeric:tabular-nums;color:${pauseSeg>0?'var(--amber)':'var(--text3)'};font-weight:${pauseSeg>0?'500':'400'}">${pauseSeg>0?fmtTime(pauseSeg):'—'}</td>
         <td style="color:var(--text2)">${dt}</td>
       </tr>`;
     }).join('');
