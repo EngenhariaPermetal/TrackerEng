@@ -8,182 +8,183 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --blue:#185FA5;--blue-dark:#0C447C;--blue-light:#E6F1FB;
-  --green:#3B6D11;--green-light:#EAF3DE;
-  --amber:#854F0B;--amber-light:#FAEEDA;
-  --red:#A32D2D;--red-light:#FCEBEB;
-  --purple:#534AB7;--purple-light:#EEEDFE;
-  --teal:#0F6E56;--teal-light:#E1F5EE;
-  --gray:#5F5E5A;--gray-light:#F1EFE8;
+  --blue:#185FA5;--blue-d:#0C447C;--blue-l:#E6F1FB;
+  --green:#3B6D11;--green-l:#EAF3DE;
+  --amber:#854F0B;--amber-l:#FAEEDA;
+  --red:#A32D2D;--red-l:#FCEBEB;
+  --purple:#534AB7;--purple-l:#EEEDFE;
   --bg:#F5F5F3;--surface:#fff;--border:rgba(0,0,0,0.1);
   --text:#1a1a18;--text2:#5F5E5A;--text3:#888780;
-  --radius:8px;--radius-lg:12px;
+  --r:8px;--rl:12px;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
 .hidden{display:none!important}
+input,select,textarea{font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);color:var(--text);outline:none;width:100%;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{resize:vertical;min-height:70px}
 
-/* ── AUTH ── */
+/* AUTH */
 #auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
-.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;width:100%;max-width:380px}
+.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:2rem;width:100%;max-width:380px}
 .auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .brand-icon{width:44px;height:44px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;flex-shrink:0}
-.brand-name{font-size:16px;font-weight:600;color:var(--text)}
-.brand-sub{font-size:12px;color:var(--text2);margin-top:1px}
 .field{margin-bottom:1rem}
 .field label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
-.field input,.field select{width:100%;padding:9px 12px;font-size:14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);outline:none;transition:border-color .15s}
-.field input:focus,.field select:focus{border-color:var(--blue)}
-.btn-login{width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:500;cursor:pointer;margin-top:.5rem;transition:background .15s}
-.btn-login:hover{background:var(--blue-dark)}
-.btn-login:disabled{opacity:.6;cursor:not-allowed}
+.btn-primary{width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:500;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.btn-primary:hover{background:var(--blue-d)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed}
 .auth-err{color:var(--red);font-size:12px;margin-top:8px;display:none}
 .auth-hint{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:11px;color:var(--text3)}
 .auth-hint b{color:var(--text2)}
 
-/* ── LAYOUT ── */
-#app-screen{display:none;min-height:100vh;flex-direction:column}
+/* LAYOUT */
+#app-screen{display:none;flex-direction:column;min-height:100vh}
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:50}
-.topbar-left{display:flex;align-items:center;gap:12px}
-.topbar-logo{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.topbar-title{font-size:15px;font-weight:600;color:var(--text)}
-.topbar-right{display:flex;align-items:center;gap:10px}
-.user-chip{display:flex;align-items:center;gap:8px}
-.user-avatar{width:30px;height:30px;border-radius:50%;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue)}
-.user-info{line-height:1.3}
-.user-name{font-size:13px;font-weight:500;color:var(--text)}
-.user-role{font-size:11px;color:var(--text2)}
-.btn-top{padding:5px 12px;font-size:12px;border:1px solid var(--border);border-radius:var(--radius);background:transparent;cursor:pointer;color:var(--text2);display:flex;align-items:center;gap:5px;transition:background .15s}
-.btn-top:hover{background:var(--bg)}
-
-/* ── NAV TABS ── */
-.nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;gap:0}
-.nav-tab{padding:14px 18px;font-size:13px;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:7px;transition:color .15s}
-.nav-tab:hover{color:var(--text)}
-.nav-tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
-.nav-badge{background:var(--blue);color:#fff;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:600}
-
-/* ── CONTEÚDO ── */
+.tlogo{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.top-right{display:flex;align-items:center;gap:10px}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--blue-l);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue)}
+.btn-sm{padding:5px 12px;font-size:12px;border:1px solid var(--border);border-radius:var(--r);background:transparent;cursor:pointer;color:var(--text2);display:flex;align-items:center;gap:5px}
+.btn-sm:hover{background:var(--bg)}
+.nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex}
+.ntab{padding:14px 18px;font-size:13px;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:7px}
+.ntab:hover{color:var(--text)}
+.ntab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
+.nbadge{background:var(--blue);color:#fff;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:600}
+.nbadge-red{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:600}
 .content{padding:1.5rem;max-width:1200px;margin:0 auto;width:100%}
 
-/* ── STATS ── */
+/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.25rem}
-.stat-label{font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
-.stat-value{font-size:26px;font-weight:600;color:var(--text);line-height:1}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1.1rem 1.25rem}
+.stat-label{font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.stat-val{font-size:26px;font-weight:600;color:var(--text);line-height:1}
 .stat-sub{font-size:11px;color:var(--text3);margin-top:5px}
 
-/* ── SEÇÃO ── */
+/* ATIVIDADES */
 .sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
 .sec-title{font-size:15px;font-weight:600;color:var(--text)}
-.btn-new{display:flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:var(--radius);padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
-.btn-new:hover{background:var(--blue-dark)}
-.btn-outline{display:flex;align-items:center;gap:6px;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;font-size:13px;cursor:pointer;transition:background .15s}
+.btn-new{display:flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
+.btn-new:hover{background:var(--blue-d)}
+.btn-outline{display:flex;align-items:center;gap:6px;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:var(--r);padding:7px 14px;font-size:13px;cursor:pointer}
 .btn-outline:hover{background:var(--bg)}
-
-/* ── ATIVIDADES ── */
-.acts-list{display:flex;flex-direction:column;gap:8px}
-.act-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;display:flex;align-items:center;gap:14px;transition:border-color .15s}
-.act-card.running{border-color:#185FA5;background:var(--blue-light)}
-.act-dept-icon{width:38px;height:38px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.acts{display:flex;flex-direction:column;gap:8px}
+.act-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;display:flex;align-items:center;gap:14px;transition:border-color .15s}
+.act-card.running{border-color:var(--blue);background:var(--blue-l)}
+.act-card.paused{border-color:var(--amber);background:var(--amber-l)}
+.act-icon{width:38px;height:38px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
 .act-body{flex:1;min-width:0}
 .act-title{font-size:14px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .act-meta{font-size:12px;color:var(--text2);margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.act-timer{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;min-width:90px;text-align:right;color:var(--text)}
+.act-timers{display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:100px}
+.act-timer{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--text)}
 .act-timer.on{color:var(--blue)}
+.act-timer.pau{color:var(--amber)}
+.pause-time{font-size:11px;color:var(--amber);font-variant-numeric:tabular-nums;font-weight:500}
 .act-actions{display:flex;gap:6px;flex-shrink:0}
-.ibtn{width:34px;height:34px;border-radius:var(--radius);border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:17px;transition:all .15s}
+.ibtn{width:34px;height:34px;border-radius:var(--r);border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:17px;transition:all .15s}
 .ibtn:hover{background:var(--bg)}
-.ibtn.play{border-color:var(--blue);color:var(--blue)}
-.ibtn.play:hover{background:var(--blue-light)}
-.ibtn.pause-btn{border-color:var(--amber);color:var(--amber)}
-.ibtn.pause-btn:hover{background:var(--amber-light)}
-.ibtn.done{border-color:var(--green);color:var(--green)}
-.ibtn.done:hover{background:var(--green-light)}
-.ibtn.del{border-color:var(--red);color:var(--red)}
-.ibtn.del:hover{background:var(--red-light)}
+.ibtn.play{border-color:var(--blue);color:var(--blue)}.ibtn.play:hover{background:var(--blue-l)}
+.ibtn.pau{border-color:var(--amber);color:var(--amber)}.ibtn.pau:hover{background:var(--amber-l)}
+.ibtn.done{border-color:var(--green);color:var(--green)}.ibtn.done:hover{background:var(--green-l)}
+.ibtn.del{border-color:var(--red);color:var(--red)}.ibtn.del:hover{background:var(--red-l)}
 
-/* ── BADGES ── */
+/* BADGES */
 .badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:999px;font-weight:500;white-space:nowrap}
-.b-run{background:var(--blue-light);color:var(--blue-dark)}
-.b-pau{background:var(--amber-light);color:var(--amber)}
-.b-done{background:var(--green-light);color:var(--green)}
-.b-open{background:var(--gray-light);color:var(--gray)}
-.b-urg{background:var(--red-light);color:var(--red)}
-.b-alt{background:var(--amber-light);color:var(--amber)}
-.dept-orc{background:var(--amber-light);color:var(--amber)}
-.dept-prod{background:var(--blue-light);color:var(--blue-dark)}
-.dept-proc{background:var(--green-light);color:var(--green)}
-.dept-ferr{background:var(--purple-light);color:var(--purple)}
-.dept-coord{background:var(--gray-light);color:var(--gray)}
+.b-run{background:var(--blue-l);color:var(--blue-d)}
+.b-pau{background:var(--amber-l);color:var(--amber)}
+.b-done{background:var(--green-l);color:var(--green)}
+.b-open{background:#F1EFE8;color:#5F5E5A}
+.b-urg{background:var(--red-l);color:var(--red)}
+.b-alt{background:var(--amber-l);color:var(--amber)}
+.dept-orc{background:var(--amber-l);color:var(--amber)}
+.dept-prod{background:var(--blue-l);color:var(--blue-d)}
+.dept-proc{background:var(--green-l);color:var(--green)}
+.dept-ferr{background:var(--purple-l);color:var(--purple)}
+.dept-coord{background:#F1EFE8;color:#5F5E5A}
 
-/* ── MODAL ── */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:flex-start;justify-content:center;z-index:200;padding:60px 1rem 1rem}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-start;justify-content:center;z-index:200;padding:60px 1rem 1rem;overflow-y:auto}
 .modal-bg.open{display:flex}
-.modal{background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);padding:1.75rem;width:100%;max-width:460px;max-height:90vh;overflow-y:auto}
-.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.modal{background:var(--surface);border-radius:var(--rl);border:1px solid var(--border);padding:1.75rem;width:100%;max-width:460px;margin:auto}
+.modal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
 .modal-title{font-size:16px;font-weight:600;color:var(--text)}
-.btn-close{background:none;border:none;font-size:20px;color:var(--text2);cursor:pointer;line-height:1;padding:2px}
-.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
-.btn-cancel{background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:8px 18px;font-size:13px;cursor:pointer;color:var(--text)}
-.btn-ok{background:var(--blue);color:#fff;border:none;border-radius:var(--radius);padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
-.btn-ok:hover{background:var(--blue-dark)}
+.btn-close{background:none;border:none;font-size:20px;color:var(--text2);cursor:pointer}
+.modal-ft{display:flex;gap:8px;justify-content:flex-end;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.btn-cancel{background:transparent;border:1px solid var(--border);border-radius:var(--r);padding:8px 18px;font-size:13px;cursor:pointer;color:var(--text)}
+.btn-ok{background:var(--blue);color:#fff;border:none;border-radius:var(--r);padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer}
+.btn-ok:hover{background:var(--blue-d)}
 .btn-ok:disabled{opacity:.6;cursor:not-allowed}
+.btn-ok.amber{background:var(--amber)}
+.btn-ok.amber:hover{background:#633806}
 .msg-err{color:var(--red);font-size:12px;margin-top:8px;display:none}
 .msg-ok{color:var(--green);font-size:12px;margin-top:8px;display:none}
 
-/* ── DASHBOARD ── */
+/* PAUSA MODAL */
+.pause-modal-icon{width:52px;height:52px;background:var(--amber-l);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--amber);margin:0 auto 1rem}
+.pause-options{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.pause-opt{padding:10px 14px;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--text);background:var(--surface);text-align:left;transition:all .15s;display:flex;align-items:center;gap:8px}
+.pause-opt:hover{border-color:var(--amber);background:var(--amber-l);color:var(--amber)}
+.pause-opt.selected{border-color:var(--amber);background:var(--amber-l);color:var(--amber);font-weight:500}
+.pause-outros{margin-top:8px;display:none}
+
+/* DASHBOARD */
 .dept-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:1.5rem}
-.dept-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.25rem}
-.dept-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.dept-card-title{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
-.dept-people{display:flex;flex-direction:column;gap:8px}
+.dept-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1.1rem 1.25rem}
+.dept-card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.dept-people{display:flex;flex-direction:column;gap:10px}
 .person-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .person-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
 .person-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0}
-.person-name{font-size:13px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.person-act{font-size:11px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.person-timer{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--text2);min-width:60px;text-align:right}
-.person-timer.on{color:var(--blue)}
+.person-name{font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.person-act{font-size:11px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.person-timers{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.ptimer{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--text2)}
+.ptimer.on{color:var(--blue)}
+.ptimer.pau{color:var(--amber)}
+.pause-mini{font-size:10px;color:var(--amber);font-variant-numeric:tabular-nums}
 
-/* ── TABELA ── */
-.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)}
+/* TABELAS */
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl)}
 .htable{width:100%;border-collapse:collapse;font-size:13px}
 .htable th{text-align:left;padding:10px 14px;color:var(--text2);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);background:var(--bg);white-space:nowrap}
-.htable td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
+.htable td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
 .htable tr:last-child td{border-bottom:none}
 .htable tr:hover td{background:var(--bg)}
 
-/* ── EMPTY ── */
-.empty{text-align:center;padding:3rem 1rem;color:var(--text2)}
-.empty i{font-size:42px;display:block;margin-bottom:.75rem;opacity:.3}
+/* PAUSA STATS no dashboard */
+.pause-stat{background:#FFF8F0;border:1px solid #FAC775;border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:1.5rem}
+.pause-stat-title{font-size:13px;font-weight:600;color:var(--amber);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.pause-bars{display:flex;flex-direction:column;gap:8px}
+.pause-bar-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.pause-bar-label{width:220px;flex-shrink:0;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pause-bar-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.pause-bar-fill{height:100%;background:var(--amber);border-radius:4px;transition:width .4s}
+.pause-bar-val{width:60px;text-align:right;font-weight:500;color:var(--amber);flex-shrink:0}
+
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--text2)}
+.empty i{font-size:40px;display:block;margin-bottom:.75rem;opacity:.3}
 .empty p{font-size:13px}
-
-/* ── LOADER ── */
 .loader{text-align:center;padding:2rem;color:var(--text2);font-size:13px}
-
-/* ── FILTROS ── */
-.filters{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
-.filter-select{padding:6px 10px;font-size:12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);cursor:pointer}
-
-/* ── LIVE DOT ── */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.fsel{padding:6px 10px;font-size:12px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);color:var(--text);width:auto}
 .live-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);display:inline-block;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sep{height:1px;background:var(--border);margin:1.5rem 0}
 </style>
 </head>
 <body>
 
-<!-- ══ AUTH ══ -->
+<!-- AUTH -->
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-brand">
       <div class="brand-icon"><i class="ti ti-tool"></i></div>
       <div>
-        <div class="brand-name">TrackerEng</div>
-        <div class="brand-sub">Portal de Apontamento — Engenharia</div>
+        <div style="font-size:16px;font-weight:600;color:var(--text)">TrackerEng</div>
+        <div style="font-size:12px;color:var(--text2)">Portal de Apontamento — Engenharia</div>
       </div>
     </div>
-    <div class="field">
-      <label>Departamento</label>
+    <div class="field"><label>Departamento</label>
       <select id="login-dept">
         <option value="">Selecione...</option>
         <option>Orçamentos</option>
@@ -193,426 +194,342 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <option>Coordenação</option>
       </select>
     </div>
-    <div class="field">
-      <label>Nome</label>
-      <input type="text" id="login-nome" placeholder="Seu nome completo" autocomplete="name" />
-    </div>
-    <div class="field">
-      <label>Senha</label>
-      <input type="password" id="login-senha" placeholder="••••••" autocomplete="current-password" />
-    </div>
-    <div class="auth-err" id="auth-err">Usuário não encontrado ou senha incorreta.</div>
-    <button class="btn-login" id="btn-login" onclick="doLogin()">
-      <i class="ti ti-login"></i> Entrar
-    </button>
-    <div class="auth-hint">
-      Colaboradores: senha <b>1234</b> &nbsp;|&nbsp; Gestão: senha <b>4321</b>
-    </div>
+    <div class="field"><label>Nome</label><input type="text" id="login-nome" placeholder="Seu nome completo" /></div>
+    <div class="field"><label>Senha</label><input type="password" id="login-senha" placeholder="••••••" /></div>
+    <div class="auth-err" id="auth-err"></div>
+    <button class="btn-primary" id="btn-login" onclick="doLogin()"><i class="ti ti-login"></i> Entrar</button>
+    <div class="auth-hint">Colaboradores: senha <b>1234</b> &nbsp;|&nbsp; Gestão: senha <b>4321</b></div>
   </div>
 </div>
 
-<!-- ══ APP ══ -->
-<div id="app-screen" style="display:none;flex-direction:column;min-height:100vh">
-
+<!-- APP -->
+<div id="app-screen">
   <div class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-logo"><i class="ti ti-tool"></i></div>
-      <span class="topbar-title">TrackerEng</span>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="tlogo"><i class="ti ti-tool"></i></div>
+      <span style="font-size:15px;font-weight:600">TrackerEng</span>
     </div>
-    <div class="topbar-right">
-      <div class="user-chip">
-        <div class="user-avatar" id="top-av">--</div>
-        <div class="user-info">
-          <div class="user-name" id="top-nome"></div>
-          <div class="user-role" id="top-role"></div>
+    <div class="top-right">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="avatar" id="top-av">--</div>
+        <div>
+          <div style="font-size:13px;font-weight:500" id="top-nome"></div>
+          <div style="font-size:11px;color:var(--text2)" id="top-role"></div>
         </div>
       </div>
-      <button class="btn-top" onclick="doLogout()"><i class="ti ti-logout" style="font-size:14px"></i> Sair</button>
+      <button class="btn-sm" onclick="doLogout()"><i class="ti ti-logout" style="font-size:14px"></i> Sair</button>
     </div>
   </div>
 
-  <div class="nav" id="nav-tabs">
-    <div class="nav-tab active" id="navtab-minha" onclick="showTab('minha')">
-      <i class="ti ti-clipboard-list"></i> Minhas atividades
-    </div>
-    <div class="nav-tab hidden" id="navtab-dashboard" onclick="showTab('dashboard')">
-      <i class="ti ti-layout-dashboard"></i> Dashboard
-      <span class="nav-badge" id="badge-and">0</span>
-    </div>
-    <div class="nav-tab" id="navtab-historico" onclick="showTab('historico')">
-      <i class="ti ti-history"></i> Histórico
-    </div>
+  <div class="nav" id="nav">
+    <div class="ntab active" id="ntab-minha" onclick="showTab('minha')"><i class="ti ti-clipboard-list"></i> Minhas atividades</div>
+    <div class="ntab hidden" id="ntab-dashboard" onclick="showTab('dashboard')"><i class="ti ti-layout-dashboard"></i> Dashboard <span class="nbadge" id="badge-and">0</span></div>
+    <div class="ntab" id="ntab-historico" onclick="showTab('historico')"><i class="ti ti-history"></i> Histórico</div>
+    <div class="ntab hidden" id="ntab-pausas" onclick="showTab('pausas')"><i class="ti ti-coffee"></i> Análise de pausas <span class="nbadge-red" id="badge-pau">0</span></div>
   </div>
 
-  <!-- TAB: MINHAS ATIVIDADES -->
+  <!-- MINHAS ATIVIDADES -->
   <div id="tab-minha" class="content">
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-label">Em andamento</div>
-        <div class="stat-value" id="st-and">0</div>
-        <div class="stat-sub">atividades ativas agora</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Pausadas</div>
-        <div class="stat-value" id="st-pau">0</div>
-        <div class="stat-sub">aguardando retomada</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Concluídas</div>
-        <div class="stat-value" id="st-conc">0</div>
-        <div class="stat-sub">no histórico</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Tempo total hoje</div>
-        <div class="stat-value" id="st-tempo">0h 0m</div>
-        <div class="stat-sub">todas as atividades</div>
-      </div>
+      <div class="stat"><div class="stat-label"><span class="live-dot"></span> Em andamento</div><div class="stat-val" id="st-and">0</div><div class="stat-sub">atividades ativas agora</div></div>
+      <div class="stat"><div class="stat-label">Pausadas</div><div class="stat-val" id="st-pau">0</div><div class="stat-sub">com motivo registrado</div></div>
+      <div class="stat"><div class="stat-label">Tempo ativo hoje</div><div class="stat-val" id="st-tempo">0h 0m</div><div class="stat-sub">excluindo pausas</div></div>
+      <div class="stat"><div class="stat-label">Tempo em pausa</div><div class="stat-val" id="st-pausa" style="color:var(--amber)">0h 0m</div><div class="stat-sub">intervenções externas</div></div>
     </div>
     <div class="sec-header">
       <span class="sec-title">Atividades abertas</span>
-      <button class="btn-new" onclick="openModal()"><i class="ti ti-plus"></i> Nova atividade</button>
+      <button class="btn-new" onclick="openModalAtiv()"><i class="ti ti-plus"></i> Nova atividade</button>
     </div>
-    <div class="acts-list" id="acts-list">
+    <div class="acts" id="acts-list">
       <div class="loader" id="acts-loader"><i class="ti ti-loader" style="font-size:22px;display:block;margin-bottom:8px"></i>Carregando...</div>
     </div>
   </div>
 
-  <!-- TAB: DASHBOARD (gestão) -->
+  <!-- DASHBOARD -->
   <div id="tab-dashboard" class="content hidden">
-    <div class="stats-grid" id="dash-stats">
-      <div class="stat-card">
-        <div class="stat-label"><span class="live-dot"></span> Em andamento</div>
-        <div class="stat-value" id="d-and">—</div>
-        <div class="stat-sub">atividades ativas agora</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Pausadas</div>
-        <div class="stat-value" id="d-pau">—</div>
-        <div class="stat-sub">aguardando retomada</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Concluídas hoje</div>
-        <div class="stat-value" id="d-conc">—</div>
-        <div class="stat-sub">por toda a equipe</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Colaboradores ativos</div>
-        <div class="stat-value" id="d-col">—</div>
-        <div class="stat-sub">com atividade em aberto</div>
-      </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label"><span class="live-dot"></span> Em andamento</div><div class="stat-val" id="d-and">—</div><div class="stat-sub">atividades ativas agora</div></div>
+      <div class="stat"><div class="stat-label">Pausadas agora</div><div class="stat-val" id="d-pau" style="color:var(--amber)">—</div><div class="stat-sub">com intervenção ativa</div></div>
+      <div class="stat"><div class="stat-label">Concluídas hoje</div><div class="stat-val" id="d-conc">—</div><div class="stat-sub">por toda a equipe</div></div>
+      <div class="stat"><div class="stat-label">Colaboradores ativos</div><div class="stat-val" id="d-col">—</div><div class="stat-sub">com atividade em aberto</div></div>
     </div>
-
     <div class="sec-header">
       <span class="sec-title">Visão por departamento</span>
       <button class="btn-outline" onclick="carregarDashboard()"><i class="ti ti-refresh" style="font-size:14px"></i> Atualizar</button>
     </div>
-    <div class="dept-grid" id="dept-grid">
-      <div class="loader">Carregando...</div>
-    </div>
-
-    <div class="sec-header" style="margin-top:1.5rem">
+    <div class="dept-grid" id="dept-grid"><div class="loader">Carregando...</div></div>
+    <div class="sec-header" style="margin-top:.5rem">
       <span class="sec-title">Todas as atividades abertas</span>
       <div class="filters">
-        <select class="filter-select" id="f-dept" onchange="filtrarDash()">
-          <option value="">Todos os departamentos</option>
-          <option>Orçamentos</option>
-          <option>Engenharia de Produtos</option>
-          <option>Engenharia de Processos</option>
-          <option>Engenharia de Ferramentas</option>
-        </select>
-        <select class="filter-select" id="f-status" onchange="filtrarDash()">
-          <option value="">Todos os status</option>
-          <option value="running">Em andamento</option>
-          <option value="paused">Pausadas</option>
-        </select>
+        <select class="fsel" id="f-dept" onchange="filtrarDash()"><option value="">Todos os departamentos</option><option>Orçamentos</option><option>Engenharia de Produtos</option><option>Engenharia de Processos</option><option>Engenharia de Ferramentas</option></select>
+        <select class="fsel" id="f-status" onchange="filtrarDash()"><option value="">Todos os status</option><option value="running">Em andamento</option><option value="paused">Pausadas</option></select>
       </div>
     </div>
     <div class="table-wrap">
-      <table class="htable">
-        <thead>
-          <tr>
-            <th>Colaborador</th>
-            <th>Departamento</th>
-            <th>Atividade</th>
-            <th>Referência</th>
-            <th>Prioridade</th>
-            <th>Status</th>
-            <th>Tempo</th>
-            <th>Início</th>
-          </tr>
-        </thead>
-        <tbody id="dash-tbody">
-          <tr><td colspan="8" class="loader">Carregando...</td></tr>
-        </tbody>
-      </table>
+      <table class="htable"><thead><tr><th>Colaborador</th><th>Departamento</th><th>Atividade</th><th>Referência</th><th>Prioridade</th><th>Status</th><th>Tempo ativo</th><th>Tempo pausa</th><th>Início</th></tr></thead>
+      <tbody id="dash-tbody"><tr><td colspan="9" class="loader">Carregando...</td></tr></tbody></table>
     </div>
   </div>
 
-  <!-- TAB: HISTÓRICO -->
+  <!-- HISTÓRICO -->
   <div id="tab-historico" class="content hidden">
     <div class="sec-header">
       <span class="sec-title">Histórico de atividades</span>
-      <div class="filters">
-        <select class="filter-select" id="h-scope" onchange="carregarHistorico()" style="display:none">
-          <option value="proprio">Minhas atividades</option>
-          <option value="todos">Toda a equipe</option>
-        </select>
-      </div>
+      <select class="fsel" id="h-scope" onchange="carregarHistorico()" style="display:none"><option value="proprio">Minhas atividades</option><option value="todos">Toda a equipe</option></select>
     </div>
     <div class="table-wrap">
-      <table class="htable">
-        <thead>
-          <tr>
-            <th id="h-col-user" class="hidden">Colaborador</th>
-            <th id="h-col-dept" class="hidden">Departamento</th>
-            <th>Referência</th>
-            <th>Tipo de atividade</th>
-            <th>Prioridade</th>
-            <th>Tempo total</th>
-            <th>Concluído em</th>
-          </tr>
-        </thead>
-        <tbody id="hist-tbody">
-          <tr><td colspan="7" class="loader">Carregando...</td></tr>
-        </tbody>
-      </table>
+      <table class="htable"><thead><tr>
+        <th id="h-col-user" class="hidden">Colaborador</th>
+        <th id="h-col-dept" class="hidden">Departamento</th>
+        <th>Referência</th><th>Tipo de atividade</th><th>Prioridade</th><th>Tempo ativo</th><th>Tempo pausa</th><th>Concluído em</th>
+      </tr></thead>
+      <tbody id="hist-tbody"><tr><td colspan="8" class="loader">Carregando...</td></tr></tbody></table>
     </div>
   </div>
 
+  <!-- ANÁLISE DE PAUSAS -->
+  <div id="tab-pausas" class="content hidden">
+    <div class="sec-header">
+      <span class="sec-title">Análise de intervenções externas</span>
+      <div class="filters">
+        <select class="fsel" id="p-dept" onchange="carregarPausas()"><option value="">Todos os departamentos</option><option>Orçamentos</option><option>Engenharia de Produtos</option><option>Engenharia de Processos</option><option>Engenharia de Ferramentas</option></select>
+        <select class="fsel" id="p-periodo" onchange="carregarPausas()"><option value="7">Últimos 7 dias</option><option value="30">Últimos 30 dias</option><option value="90">Últimos 90 dias</option></select>
+      </div>
+    </div>
+    <div class="pause-stat" id="pause-rank-card">
+      <div class="pause-stat-title"><i class="ti ti-chart-bar"></i> Motivos de pausa por tempo acumulado</div>
+      <div class="pause-bars" id="pause-bars"><div class="loader" style="padding:.5rem">Carregando...</div></div>
+    </div>
+    <div class="stats-grid" id="pause-stats-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stat"><div class="stat-label">Total de pausas</div><div class="stat-val" id="p-total">—</div><div class="stat-sub">registros no período</div></div>
+      <div class="stat"><div class="stat-label">Tempo total em pausa</div><div class="stat-val" id="p-tempo" style="color:var(--amber)">—</div><div class="stat-sub">soma de todas as pausas</div></div>
+      <div class="stat"><div class="stat-label">Motivo mais frequente</div><div class="stat-val" id="p-top" style="font-size:14px;line-height:1.3;margin-top:4px">—</div><div class="stat-sub">por ocorrências</div></div>
+    </div>
+    <div class="sec-title" style="margin-bottom:1rem">Registro detalhado de pausas</div>
+    <div class="table-wrap">
+      <table class="htable"><thead><tr><th>Colaborador</th><th>Departamento</th><th>Motivo</th><th>Observação</th><th>Duração</th><th>Data/hora</th></tr></thead>
+      <tbody id="pausas-tbody"><tr><td colspan="6" class="loader">Carregando...</td></tr></tbody></table>
+    </div>
+  </div>
 </div>
 
-<!-- ══ MODAL NOVA ATIVIDADE ══ -->
-<div class="modal-bg" id="modal" onclick="modalOut(event)">
+<!-- MODAL: NOVA ATIVIDADE -->
+<div class="modal-bg" id="modal-ativ" onclick="mout(event,'modal-ativ')">
   <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title">Nova atividade</span>
-      <button class="btn-close" onclick="closeModal()"><i class="ti ti-x"></i></button>
-    </div>
-
-    <div class="field" id="modal-user-field" style="display:none">
-      <label>Colaborador</label>
-      <select id="m-user"></select>
-    </div>
-    <div class="field">
-      <label>Tipo de atividade <span style="color:var(--red)">*</span></label>
-      <select id="m-tipo"><option value="">Selecione...</option></select>
-    </div>
-    <div class="field">
-      <label>Código / Referência <span style="color:var(--red)">*</span></label>
-      <input type="text" id="m-ref" placeholder="Ex: ORC-2024-001, DES-0042..." />
-    </div>
-    <div class="field">
-      <label>Descrição</label>
-      <input type="text" id="m-desc" placeholder="Descreva brevemente a atividade..." />
-    </div>
-    <div class="field">
-      <label>Prioridade</label>
-      <select id="m-prio">
-        <option value="Normal">Normal</option>
-        <option value="Alta">Alta</option>
-        <option value="Urgente">Urgente</option>
-      </select>
-    </div>
+    <div class="modal-hd"><span class="modal-title">Nova atividade</span><button class="btn-close" onclick="closeModal('modal-ativ')"><i class="ti ti-x"></i></button></div>
+    <div class="field" id="mu-field" style="display:none"><label>Colaborador</label><select id="m-user"></select></div>
+    <div class="field"><label>Tipo de atividade <span style="color:var(--red)">*</span></label><select id="m-tipo"><option value="">Selecione...</option></select></div>
+    <div class="field"><label>Código / Referência <span style="color:var(--red)">*</span></label><input type="text" id="m-ref" placeholder="Ex: ORC-2024-001" /></div>
+    <div class="field"><label>Descrição</label><input type="text" id="m-desc" placeholder="Descreva brevemente..." /></div>
+    <div class="field"><label>Prioridade</label><select id="m-prio"><option>Normal</option><option>Alta</option><option>Urgente</option></select></div>
     <div class="msg-err" id="m-err">Preencha o tipo e a referência.</div>
     <div class="msg-ok" id="m-ok">✓ Atividade criada! Cronômetro iniciado.</div>
-    <div class="modal-footer">
-      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-ok" id="btn-criar" onclick="criarAtividade()">
-        <i class="ti ti-player-play" style="font-size:13px;vertical-align:-1px"></i> Criar e iniciar
-      </button>
+    <div class="modal-ft">
+      <button class="btn-cancel" onclick="closeModal('modal-ativ')">Cancelar</button>
+      <button class="btn-ok" id="btn-criar" onclick="criarAtividade()"><i class="ti ti-player-play" style="font-size:13px;vertical-align:-1px"></i> Criar e iniciar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: MOTIVO DA PAUSA -->
+<div class="modal-bg" id="modal-pausa">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-title">Por que está pausando?</span>
+    </div>
+    <div class="pause-modal-icon"><i class="ti ti-coffee"></i></div>
+    <p style="font-size:13px;color:var(--text2);text-align:center;margin-bottom:1.25rem">Selecione o motivo da intervenção para registrar o tempo de pausa.</p>
+    <div class="pause-options" id="pause-options"></div>
+    <div class="pause-outros" id="pause-outros-wrap">
+      <div class="field"><label>Especifique o motivo</label><textarea id="pause-obs" placeholder="Descreva a intervenção..."></textarea></div>
+    </div>
+    <div class="msg-err" id="p-err">Selecione um motivo.</div>
+    <div class="modal-ft">
+      <button class="btn-cancel" onclick="cancelarPausa()">Cancelar</button>
+      <button class="btn-ok amber" onclick="confirmarPausa()"><i class="ti ti-player-pause" style="font-size:13px;vertical-align:-1px"></i> Pausar atividade</button>
     </div>
   </div>
 </div>
 
 <script>
-const SB_URL = 'https://vyxqmwhvulmzlhktkurh.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5eHFtd2h2dWxtemxoa3RrdXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTUzNjcsImV4cCI6MjA5NzkzMTM2N30.udr_Du3i98A0u7EJQY0EyCl326T18nDhftA2n09-OeQ';
+const SB_URL='https://vyxqmwhvulmzlhktkurh.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5eHFtd2h2dWxtemxoa3RrdXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTUzNjcsImV4cCI6MjA5NzkzMTM2N30.udr_Du3i98A0u7EJQY0EyCl326T18nDhftA2n09-OeQ';
 
-const TIPOS = {
-  'Orçamentos':['Cotação de item','Análise de proposta','Revisão de orçamento','Negociação com fornecedor','Emissão de pedido','Consulta técnica'],
-  'Engenharia de Produtos':['Desenvolvimento de produto','Revisão de desenho','Análise de falha','Homologação de componente','Elaboração de especificação','Aprovação de protótipo'],
-  'Engenharia de Processos':['Mapeamento de processo','Análise de capacidade','Elaboração de FMEA','Estudo de tempo','Implantação de melhoria','Revisão de fluxograma'],
-  'Engenharia de Ferramentas':['Projeto de ferramenta','Manutenção de molde','Análise de desgaste','Requisição de ferramental','Validação dimensional','Lay-out de ferramental'],
-  'Coordenação':['Reunião de alinhamento','Análise de performance','Revisão de processos','Tomada de decisão','Visita técnica','Treinamento']
+const TIPOS={
+  'Orçamentos':['Orçamento de Item','Acompanhamento de Protótipo','Acompanhamento de Processos - Fábrica','Reunião de Alinhamento - Equipe','Reunião de Alinhamento 1:1'],
+  'Engenharia de Produtos':['Desenvolvimento de Produto','Desenvolvimento de Melhorias','Acompanhamento de Protótipo','Acompanhamento de Processos - Fábrica','Reunião de Alinhamento - Equipe','Reunião de Alinhamento 1:1'],
+  'Engenharia de Processos':['Emissão de OPs','Programação de Máquinas','Análise de Processos','Acompanhamento de Protótipo','Acompanhamento de Processos - Fábrica','Reunião de Alinhamento - Equipe','Reunião de Alinhamento 1:1'],
+  'Engenharia de Ferramentas':['Projeto de Ferramenta','Manutenção de Molde','Análise de Desgaste','Requisição de Ferramental','Validação Dimensional','Lay-out de Ferramental'],
+  'Coordenação':['Reunião de Alinhamento','Análise de Performance','Revisão de Processos','Tomada de Decisão','Visita Técnica','Treinamento']
 };
-const DEPT_ICON = {'Orçamentos':'ti-receipt','Engenharia de Produtos':'ti-cube','Engenharia de Processos':'ti-settings','Engenharia de Ferramentas':'ti-tool','Coordenação':'ti-crown'};
-const DEPT_CLS  = {'Orçamentos':'dept-orc','Engenharia de Produtos':'dept-prod','Engenharia de Processos':'dept-proc','Engenharia de Ferramentas':'dept-ferr','Coordenação':'dept-coord'};
-const DEPT_AV   = {'Orçamentos':['#FAEEDA','#633806'],'Engenharia de Produtos':['#E6F1FB','#0C447C'],'Engenharia de Processos':['#EAF3DE','#27500A'],'Engenharia de Ferramentas':['#EEEDFE','#3C3489'],'Coordenação':['#F1EFE8','#444441']};
+const PAUSAS={
+  'Orçamentos':['Dúvida Técnica Externa - Comercial','Dúvida Técnica Externa - Administrativo','Dúvida Técnica Externa - Produção','Análise de Produção','OSI','Reunião de Alinhamento - Equipe','Reunião de Alinhamento 1:1','Outros (Especificar)'],
+  'Engenharia de Produtos':['Dúvida Técnica Externa - Comercial','Dúvida Técnica Externa - Administrativo','Dúvida Técnica Externa - Produção','Análise de Produção','OSI','Reunião de Alinhamento - Equipe','Reunião de Alinhamento 1:1','Outros (Especificar)'],
+  'Engenharia de Processos':['Dúvida Técnica Externa - Comercial','Dúvida Técnica Externa - Administrativo','Dúvida Técnica Externa - Produção','Assinatura de OPs','Reunião de Alinhamento - Equipe','Reunião de Alinhamento 1:1','Outros (Especificar)'],
+  'Engenharia de Ferramentas':['Dúvida Técnica Externa - Comercial','Dúvida Técnica Externa - Administrativo','Dúvida Técnica Externa - Produção','Outros (Especificar)'],
+  'Coordenação':['Reunião de Alinhamento','Outros (Especificar)']
+};
+const DEPT_ICON={'Orçamentos':'ti-receipt','Engenharia de Produtos':'ti-cube','Engenharia de Processos':'ti-settings','Engenharia de Ferramentas':'ti-tool','Coordenação':'ti-crown'};
+const DEPT_CLS={'Orçamentos':'dept-orc','Engenharia de Produtos':'dept-prod','Engenharia de Processos':'dept-proc','Engenharia de Ferramentas':'dept-ferr','Coordenação':'dept-coord'};
+const DEPT_AV={'Orçamentos':['#FAEEDA','#633806'],'Engenharia de Produtos':['#E6F1FB','#0C447C'],'Engenharia de Processos':['#EAF3DE','#27500A'],'Engenharia de Ferramentas':['#EEEDFE','#3C3489'],'Coordenação':['#F1EFE8','#444441']};
 
-let user = null;
-let atividades = [];
-let dashAtividades = [];
-let todosColabs = [];
-let tickInt = null;
-let dashInt = null;
-let isGestor = false;
+let user=null,atividades=[],dashAts=[],todosColabs=[],tickInt=null,dashInt=null,isGestor=false;
+let pausandoId=null;
 
-// ── SUPABASE ──
-async function sb(path, opts = {}) {
-  const res = await fetch(SB_URL + '/rest/v1/' + path, {
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': 'Bearer ' + SB_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation',
-      ...(opts.headers || {})
-    },
-    ...opts
-  });
-  if (!res.ok) { const t = await res.text(); throw new Error(t); }
-  const ct = res.headers.get('content-type') || '';
-  if (ct.includes('json') && res.status !== 204) return res.json();
+async function sb(path,opts={}){
+  const r=await fetch(SB_URL+'/rest/v1/'+path,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation',...(opts.headers||{})},...opts});
+  if(!r.ok){const t=await r.text();throw new Error(t);}
+  const ct=r.headers.get('content-type')||'';
+  if(ct.includes('json')&&r.status!==204)return r.json();
   return null;
 }
 
-// ── LOGIN ──
-async function doLogin() {
-  const dept  = document.getElementById('login-dept').value;
-  const nome  = document.getElementById('login-nome').value.trim();
-  const senha = document.getElementById('login-senha').value;
-  const err   = document.getElementById('auth-err');
-  err.style.display = 'none';
-  if (!dept || !nome || !senha) { err.textContent = 'Preencha todos os campos.'; err.style.display = 'block'; return; }
-  const btn = document.getElementById('btn-login');
-  btn.disabled = true; btn.innerHTML = '<i class="ti ti-loader"></i> Entrando...';
-  try {
-    const rows = await sb(`eng_usuarios?nome=eq.${encodeURIComponent(nome)}&departamento=eq.${encodeURIComponent(dept)}&senha=eq.${encodeURIComponent(senha)}&select=*`);
-    if (!rows || !rows.length) { err.textContent = 'Usuário não encontrado ou senha incorreta.'; err.style.display = 'block'; btn.disabled = false; btn.innerHTML = '<i class="ti ti-login"></i> Entrar'; return; }
-    user = rows[0];
-    iniciarSessao();
-  } catch(e) { err.textContent = 'Erro de conexão: ' + e.message; err.style.display = 'block'; btn.disabled = false; btn.innerHTML = '<i class="ti ti-login"></i> Entrar'; }
+async function doLogin(){
+  const dept=document.getElementById('login-dept').value;
+  const nome=document.getElementById('login-nome').value.trim();
+  const senha=document.getElementById('login-senha').value;
+  const err=document.getElementById('auth-err');
+  err.style.display='none';
+  if(!dept||!nome||!senha){err.textContent='Preencha todos os campos.';err.style.display='block';return;}
+  const btn=document.getElementById('btn-login');
+  btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> Entrando...';
+  try{
+    const rows=await sb(`eng_usuarios?nome=eq.${encodeURIComponent(nome)}&departamento=eq.${encodeURIComponent(dept)}&senha=eq.${encodeURIComponent(senha)}&select=*`);
+    if(!rows||!rows.length){err.textContent='Usuário não encontrado ou senha incorreta.';err.style.display='block';btn.disabled=false;btn.innerHTML='<i class="ti ti-login"></i> Entrar';return;}
+    user=rows[0];iniciarSessao();
+  }catch(e){err.textContent='Erro de conexão: '+e.message;err.style.display='block';btn.disabled=false;btn.innerHTML='<i class="ti ti-login"></i> Entrar';}
 }
 
-function iniciarSessao() {
-  document.getElementById('auth-screen').style.display = 'none';
-  document.getElementById('app-screen').style.display = 'flex';
-  isGestor = user.perfil === 'coordenador' || user.perfil === 'supervisor';
-
-  const ini = user.nome.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
-  document.getElementById('top-av').textContent = ini;
-  document.getElementById('top-nome').textContent = user.nome;
-  const roles = { colaborador: 'Colaborador', supervisor: 'Supervisor', coordenador: 'Coordenador' };
-  document.getElementById('top-role').textContent = (roles[user.perfil] || '') + ' · ' + user.departamento;
-
-  if (isGestor) {
-    document.getElementById('navtab-dashboard').classList.remove('hidden');
-    document.getElementById('h-scope').style.display = 'block';
+function iniciarSessao(){
+  document.getElementById('auth-screen').style.display='none';
+  document.getElementById('app-screen').style.display='flex';
+  isGestor=user.perfil==='coordenador'||user.perfil==='supervisor';
+  const ini=user.nome.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('top-av').textContent=ini;
+  document.getElementById('top-nome').textContent=user.nome;
+  const roles={colaborador:'Colaborador',supervisor:'Supervisor',coordenador:'Coordenador'};
+  document.getElementById('top-role').textContent=(roles[user.perfil]||'')+' · '+user.departamento;
+  if(isGestor){
+    document.getElementById('ntab-dashboard').classList.remove('hidden');
+    document.getElementById('ntab-pausas').classList.remove('hidden');
+    document.getElementById('h-scope').style.display='block';
     document.getElementById('h-col-user').classList.remove('hidden');
     document.getElementById('h-col-dept').classList.remove('hidden');
-    carregarColabs();
-    showTab('dashboard');
-  } else {
-    showTab('minha');
-  }
-
+    carregarColabs();showTab('dashboard');
+  }else{showTab('minha');}
   preencherTipos(user.departamento);
   carregarAtividades();
-  tickInt = setInterval(tick, 1000);
-  if (isGestor) { carregarDashboard(); dashInt = setInterval(carregarDashboard, 30000); }
+  tickInt=setInterval(tick,1000);
+  if(isGestor){carregarDashboard();dashInt=setInterval(carregarDashboard,30000);}
 }
 
-function doLogout() {
-  clearInterval(tickInt); clearInterval(dashInt);
-  user = null; atividades = []; dashAtividades = []; todosColabs = [];
-  document.getElementById('app-screen').style.display = 'none';
-  document.getElementById('auth-screen').style.display = 'flex';
-  document.getElementById('login-senha').value = '';
-  document.getElementById('auth-err').style.display = 'none';
-  const btn = document.getElementById('btn-login');
-  btn.disabled = false; btn.innerHTML = '<i class="ti ti-login"></i> Entrar';
+function doLogout(){
+  clearInterval(tickInt);clearInterval(dashInt);
+  user=null;atividades=[];dashAts=[];todosColabs=[];
+  document.getElementById('app-screen').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
+  document.getElementById('login-senha').value='';
+  const btn=document.getElementById('btn-login');
+  btn.disabled=false;btn.innerHTML='<i class="ti ti-login"></i> Entrar';
 }
 
-// ── TABS ──
-function showTab(t) {
-  ['minha','dashboard','historico'].forEach(x => {
-    document.getElementById('tab-' + x).classList.toggle('hidden', x !== t);
-    const nb = document.getElementById('navtab-' + x);
-    if (nb) nb.classList.toggle('active', x === t);
+function showTab(t){
+  ['minha','dashboard','historico','pausas'].forEach(x=>{
+    document.getElementById('tab-'+x).classList.toggle('hidden',x!==t);
+    const nb=document.getElementById('ntab-'+x);
+    if(nb)nb.classList.toggle('active',x===t);
   });
-  if (t === 'historico') carregarHistorico();
-  if (t === 'dashboard') carregarDashboard();
+  if(t==='historico')carregarHistorico();
+  if(t==='dashboard')carregarDashboard();
+  if(t==='pausas')carregarPausas();
 }
 
-// ── TIPOS ──
-function preencherTipos(dept) {
-  const sel = document.getElementById('m-tipo');
-  sel.innerHTML = '<option value="">Selecione...</option>';
-  (TIPOS[dept] || []).forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; sel.appendChild(o); });
+function preencherTipos(dept){
+  const sel=document.getElementById('m-tipo');
+  sel.innerHTML='<option value="">Selecione...</option>';
+  (TIPOS[dept]||[]).forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o);});
 }
 
-// ── CARREGAR ATIVIDADES (próprias) ──
-async function carregarAtividades() {
-  try {
-    const rows = await sb(`eng_atividades?usuario_id=eq.${user.id}&status=neq.concluida&order=criado_em.desc&select=*`);
-    atividades = (rows || []).map(r => ({ ...r, _elapsed: r.tempo_segundos || 0, _lastStart: r.status === 'running' ? Date.now() : null }));
-    renderAts();
-    atualizarStats();
-  } catch(e) { document.getElementById('acts-loader').textContent = 'Erro: ' + e.message; }
+async function carregarAtividades(){
+  try{
+    const rows=await sb(`eng_atividades?usuario_id=eq.${user.id}&status=neq.concluida&order=criado_em.desc&select=*`);
+    atividades=(rows||[]).map(r=>({...r,_elapsed:r.tempo_segundos||0,_pauseElapsed:r.tempo_pausa_segundos||0,_lastStart:r.status==='running'?Date.now():null,_lastPause:r.status==='paused'?Date.now():null}));
+    renderAts();atualizarStats();
+  }catch(e){document.getElementById('acts-loader').textContent='Erro: '+e.message;}
 }
 
-// ── TICK ──
-function tick() {
-  atividades.forEach(a => {
-    if (a.status === 'running' && a._lastStart) {
-      const el = document.getElementById('tmr-' + a.id);
-      if (el) el.textContent = fmtTime(elapsedNow(a));
-    }
+function elapsedNow(a){
+  if(a.status==='running'&&a._lastStart)return a._elapsed+Math.floor((Date.now()-a._lastStart)/1000);
+  return a._elapsed;
+}
+function pauseNow(a){
+  if(a.status==='paused'&&a._lastPause)return a._pauseElapsed+Math.floor((Date.now()-a._lastPause)/1000);
+  return a._pauseElapsed;
+}
+
+function tick(){
+  atividades.forEach(a=>{
+    const te=document.getElementById('tmr-'+a.id);
+    const tp=document.getElementById('ptmr-'+a.id);
+    if(te)te.textContent=fmtTime(elapsedNow(a));
+    if(tp&&a.status==='paused')tp.textContent='⏸ pausa: '+fmtTime(pauseNow(a));
   });
-  dashAtividades.forEach(a => {
-    if (a.status === 'running' && a._lastStart) {
-      const el = document.getElementById('dtmr-' + a.id);
-      if (el) { el.textContent = fmtTime(elapsedNow(a)); el.className = 'person-timer on'; }
-    }
+  dashAts.forEach(a=>{
+    const te=document.getElementById('dtmr-'+a.id);
+    const tp=document.getElementById('dptmr-'+a.id);
+    if(te)te.textContent=fmtTime(elapsedNow(a));
+    if(tp&&a.status==='paused')tp.textContent=fmtTime(pauseNow(a));
   });
   atualizarStats();
 }
 
-function elapsedNow(a) {
-  if (a.status === 'running' && a._lastStart) return a._elapsed + Math.floor((Date.now() - a._lastStart) / 1000);
-  return a._elapsed;
+function fmtTime(s){
+  s=Math.max(0,s);
+  const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+  if(h>0)return h+'h '+String(m).padStart(2,'0')+'m '+String(sec).padStart(2,'0')+'s';
+  return String(m).padStart(2,'0')+'m '+String(sec).padStart(2,'0')+'s';
 }
 
-function fmtTime(s) {
-  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
-  if (h > 0) return h + 'h ' + String(m).padStart(2, '0') + 'm ' + String(sec).padStart(2, '0') + 's';
-  return String(m).padStart(2, '0') + 'm ' + String(sec).padStart(2, '0') + 's';
+function atualizarStats(){
+  const and=atividades.filter(a=>a.status==='running').length;
+  const pau=atividades.filter(a=>a.status==='paused').length;
+  const totalAtivo=atividades.reduce((s,a)=>s+elapsedNow(a),0);
+  const totalPausa=atividades.reduce((s,a)=>s+pauseNow(a),0);
+  document.getElementById('st-and').textContent=and;
+  document.getElementById('st-pau').textContent=pau;
+  document.getElementById('st-tempo').textContent=Math.floor(totalAtivo/3600)+'h '+Math.floor((totalAtivo%3600)/60)+'m';
+  document.getElementById('st-pausa').textContent=Math.floor(totalPausa/3600)+'h '+Math.floor((totalPausa%3600)/60)+'m';
 }
 
-function atualizarStats() {
-  const and = atividades.filter(a => a.status === 'running').length;
-  const pau = atividades.filter(a => a.status === 'paused').length;
-  const totalS = atividades.reduce((s, a) => s + elapsedNow(a), 0);
-  document.getElementById('st-and').textContent = and;
-  document.getElementById('st-pau').textContent = pau;
-  document.getElementById('st-tempo').textContent = Math.floor(totalS / 3600) + 'h ' + Math.floor((totalS % 3600) / 60) + 'm';
-}
-
-// ── RENDER ATIVIDADES ──
-function renderAts() {
-  const list = document.getElementById('acts-list');
-  if (!atividades.length) { list.innerHTML = '<div class="empty"><i class="ti ti-clipboard-list"></i><p>Nenhuma atividade aberta.<br>Clique em "Nova atividade" para começar.</p></div>'; return; }
-  list.innerHTML = '';
-  atividades.forEach(a => {
-    const dc = DEPT_CLS[a.departamento] || 'dept-orc';
-    const di = DEPT_ICON[a.departamento] || 'ti-tool';
-    const isRun = a.status === 'running', isPau = a.status === 'paused';
-    const prioBadge = a.prioridade === 'Urgente' ? '<span class="badge b-urg">⚑ Urgente</span>' : a.prioridade === 'Alta' ? '<span class="badge b-alt">⚑ Alta</span>' : '';
-    const card = document.createElement('div');
-    card.className = 'act-card' + (isRun ? ' running' : '');
-    card.innerHTML = `
-      <div class="act-dept-icon ${dc}"><i class="ti ${di}"></i></div>
+function renderAts(){
+  const list=document.getElementById('acts-list');
+  if(!atividades.length){list.innerHTML='<div class="empty"><i class="ti ti-clipboard-list"></i><p>Nenhuma atividade aberta.<br>Clique em "Nova atividade" para começar.</p></div>';return;}
+  list.innerHTML='';
+  atividades.forEach(a=>{
+    const dc=DEPT_CLS[a.departamento]||'dept-orc';
+    const di=DEPT_ICON[a.departamento]||'ti-tool';
+    const isRun=a.status==='running',isPau=a.status==='paused';
+    const pBadge=a.prioridade==='Urgente'?'<span class="badge b-urg">⚑ Urgente</span>':a.prioridade==='Alta'?'<span class="badge b-alt">⚑ Alta</span>':'';
+    const pauseMotivo=a.motivo_pausa_atual?`<span class="badge b-pau"><i class="ti ti-coffee" style="font-size:11px"></i> ${a.motivo_pausa_atual}</span>`:'';
+    const card=document.createElement('div');
+    card.className='act-card'+(isRun?' running':isPau?' paused':'');
+    card.innerHTML=`
+      <div class="act-icon ${dc}"><i class="ti ${di}"></i></div>
       <div class="act-body">
         <div class="act-title">${a.tipo} <span style="font-weight:400;color:var(--text2)">· ${a.referencia}</span></div>
         <div class="act-meta">
-          ${a.descricao ? '<span>' + a.descricao + '</span>' : ''}
-          <span class="badge ${isRun ? 'b-run' : isPau ? 'b-pau' : 'b-open'}">${isRun ? '● Em andamento' : isPau ? '⏸ Pausada' : 'Aberta'}</span>
-          ${prioBadge}
+          ${a.descricao?'<span>'+a.descricao+'</span>':''}
+          <span class="badge ${isRun?'b-run':isPau?'b-pau':'b-open'}">${isRun?'● Em andamento':isPau?'⏸ Pausada':'Aberta'}</span>
+          ${pBadge}${pauseMotivo}
         </div>
       </div>
-      <div class="act-timer${isRun ? ' on' : ''}" id="tmr-${a.id}">${fmtTime(elapsedNow(a))}</div>
+      <div class="act-timers">
+        <div class="act-timer${isRun?' on':isPau?' pau':''}" id="tmr-${a.id}">${fmtTime(elapsedNow(a))}</div>
+        <div class="pause-time" id="ptmr-${a.id}">${isPau?'⏸ pausa: '+fmtTime(pauseNow(a)):pauseNow(a)>0?'pausa acum.: '+fmtTime(a._pauseElapsed):''}</div>
+      </div>
       <div class="act-actions">
-        ${isPau ? `<button class="ibtn play" onclick="retomar('${a.id}')" title="Retomar"><i class="ti ti-player-play"></i></button>` : ''}
-        ${isRun ? `<button class="ibtn pause-btn" onclick="pausar('${a.id}')" title="Pausar"><i class="ti ti-player-pause"></i></button>` : ''}
+        ${isPau?`<button class="ibtn play" onclick="retomar('${a.id}')" title="Retomar"><i class="ti ti-player-play"></i></button>`:''}
+        ${isRun?`<button class="ibtn pau" onclick="abrirModalPausa('${a.id}')" title="Pausar"><i class="ti ti-player-pause"></i></button>`:''}
         <button class="ibtn done" onclick="concluir('${a.id}')" title="Concluir"><i class="ti ti-check"></i></button>
         <button class="ibtn del" onclick="excluir('${a.id}')" title="Excluir"><i class="ti ti-trash"></i></button>
       </div>`;
@@ -620,241 +537,306 @@ function renderAts() {
   });
 }
 
-// ── AÇÕES ──
-async function pausar(id) {
-  const a = atividades.find(x => x.id === id); if (!a) return;
-  const seg = elapsedNow(a);
-  a.status = 'paused'; a._elapsed = seg; a._lastStart = null;
-  await sb(`eng_atividades?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ status: 'paused', tempo_segundos: seg }) });
-  renderAts(); atualizarStats();
+// MODAL PAUSA
+function abrirModalPausa(id){
+  pausandoId=id;
+  const a=atividades.find(x=>x.id===id);if(!a)return;
+  const dept=a.departamento;
+  const motivos=PAUSAS[dept]||['Outros (Especificar)'];
+  const wrap=document.getElementById('pause-options');
+  wrap.innerHTML='';
+  motivos.forEach(m=>{
+    const btn=document.createElement('button');
+    btn.className='pause-opt';
+    btn.textContent=m;
+    btn.onclick=()=>selecionarMotivo(m,btn);
+    wrap.appendChild(btn);
+  });
+  document.getElementById('pause-outros-wrap').style.display='none';
+  document.getElementById('pause-obs').value='';
+  document.getElementById('p-err').style.display='none';
+  document.getElementById('modal-pausa').classList.add('open');
 }
 
-async function retomar(id) {
-  const a = atividades.find(x => x.id === id); if (!a) return;
-  a.status = 'running'; a._lastStart = Date.now();
-  await sb(`eng_atividades?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ status: 'running' }) });
-  renderAts(); atualizarStats();
+function selecionarMotivo(m,btn){
+  document.querySelectorAll('.pause-opt').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const isOutros=m==='Outros (Especificar)';
+  document.getElementById('pause-outros-wrap').style.display=isOutros?'block':'none';
 }
 
-async function concluir(id) {
-  const a = atividades.find(x => x.id === id); if (!a) return;
-  const seg = elapsedNow(a);
-  await sb(`eng_atividades?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ status: 'concluida', tempo_segundos: seg, concluido_em: new Date().toISOString() }) });
-  atividades = atividades.filter(x => x.id !== id);
-  const st = document.getElementById('st-conc');
-  st.textContent = parseInt(st.textContent || '0') + 1;
-  renderAts(); atualizarStats();
+function cancelarPausa(){
+  pausandoId=null;
+  document.getElementById('modal-pausa').classList.remove('open');
 }
 
-async function excluir(id) {
-  if (!confirm('Excluir esta atividade permanentemente?')) return;
-  await sb(`eng_atividades?id=eq.${id}`, { method: 'DELETE', headers: { 'Prefer': '' } });
-  atividades = atividades.filter(x => x.id !== id);
-  renderAts(); atualizarStats();
+async function confirmarPausa(){
+  const sel=document.querySelector('.pause-opt.selected');
+  if(!sel){document.getElementById('p-err').style.display='block';return;}
+  const motivo=sel.textContent;
+  const obs=document.getElementById('pause-obs').value.trim();
+  const motivoFinal=motivo==='Outros (Especificar)'?'Outros: '+(obs||'não especificado'):motivo;
+  const a=atividades.find(x=>x.id===pausandoId);if(!a)return;
+  const seg=elapsedNow(a);
+  a.status='paused';a._elapsed=seg;a._lastStart=null;a._lastPause=Date.now();a.motivo_pausa_atual=motivoFinal;
+  await sb(`eng_atividades?id=eq.${pausandoId}`,{method:'PATCH',body:JSON.stringify({status:'paused',tempo_segundos:seg,motivo_pausa_atual:motivoFinal})});
+  await sb('eng_pausas',{method:'POST',body:JSON.stringify({atividade_id:pausandoId,usuario_id:user.id,usuario_nome:user.nome,departamento:user.departamento,motivo:motivoFinal,observacao:obs,inicio:new Date().toISOString()})});
+  document.getElementById('modal-pausa').classList.remove('open');
+  pausandoId=null;
+  renderAts();atualizarStats();
 }
 
-// ── MODAL ──
-function openModal() {
-  document.getElementById('m-err').style.display = 'none';
-  document.getElementById('m-ok').style.display = 'none';
-  if (isGestor) {
-    document.getElementById('modal-user-field').style.display = 'block';
-    document.getElementById('m-user').innerHTML = '<option value="">— Para mim mesmo —</option>';
-    todosColabs.forEach(c => {
-      const o = document.createElement('option');
-      o.value = c.id + '|' + c.nome + '|' + c.departamento;
-      o.textContent = c.nome + ' (' + c.departamento + ')';
-      document.getElementById('m-user').appendChild(o);
-    });
-    document.getElementById('m-user').onchange = function() {
-      const val = this.value;
-      const dept = val ? val.split('|')[2] : user.departamento;
-      preencherTipos(dept);
-    };
+async function retomar(id){
+  const a=atividades.find(x=>x.id===id);if(!a)return;
+  const pausaSeg=pauseNow(a);
+  a.status='running';a._lastStart=Date.now();a._pauseElapsed=pausaSeg;a._lastPause=null;a.motivo_pausa_atual=null;
+  const pausaRows=await sb(`eng_pausas?atividade_id=eq.${id}&fim=is.null&select=*`);
+  if(pausaRows&&pausaRows.length){
+    const pid=pausaRows[0].id;
+    const dur=Math.floor((Date.now()-new Date(pausaRows[0].inicio).getTime())/1000);
+    await sb(`eng_pausas?id=eq.${pid}`,{method:'PATCH',body:JSON.stringify({fim:new Date().toISOString(),duracao_segundos:dur})});
   }
-  document.getElementById('modal').classList.add('open');
+  await sb(`eng_atividades?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({status:'running',tempo_pausa_segundos:pausaSeg,motivo_pausa_atual:null})});
+  renderAts();atualizarStats();
 }
 
-function closeModal() { document.getElementById('modal').classList.remove('open'); resetModal(); }
-function modalOut(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-
-function resetModal() {
-  document.getElementById('m-ref').value = '';
-  document.getElementById('m-desc').value = '';
-  document.getElementById('m-tipo').value = '';
-  document.getElementById('m-prio').value = 'Normal';
-  if (document.getElementById('m-user')) document.getElementById('m-user').value = '';
-  preencherTipos(user.departamento);
-}
-
-async function criarAtividade() {
-  const tipo = document.getElementById('m-tipo').value;
-  const ref  = document.getElementById('m-ref').value.trim();
-  const desc = document.getElementById('m-desc').value.trim();
-  const prio = document.getElementById('m-prio').value;
-  const err  = document.getElementById('m-err');
-  const ok   = document.getElementById('m-ok');
-  err.style.display = 'none'; ok.style.display = 'none';
-  if (!tipo || !ref) { err.style.display = 'block'; return; }
-
-  let uid = user.id, unome = user.nome, udept = user.departamento;
-  if (isGestor) {
-    const muv = document.getElementById('m-user').value;
-    if (muv) { const p = muv.split('|'); uid = p[0]; unome = p[1]; udept = p[2]; }
-  }
-
-  const btn = document.getElementById('btn-criar');
-  btn.disabled = true; btn.textContent = 'Salvando...';
-  try {
-    const rows = await sb('eng_atividades', {
-      method: 'POST',
-      body: JSON.stringify({ usuario_id: uid, usuario_nome: unome, departamento: udept, tipo, referencia: ref, descricao: desc, prioridade: prio, status: 'running', tempo_segundos: 0 })
-    });
-    if (uid === user.id) {
-      const nova = { ...rows[0], _elapsed: 0, _lastStart: Date.now() };
-      atividades.unshift(nova);
-      renderAts(); atualizarStats();
+async function concluir(id){
+  const a=atividades.find(x=>x.id===id);if(!a)return;
+  const seg=elapsedNow(a),pausaSeg=pauseNow(a);
+  if(a.status==='paused'){
+    const pausaRows=await sb(`eng_pausas?atividade_id=eq.${id}&fim=is.null&select=*`);
+    if(pausaRows&&pausaRows.length){
+      const pid=pausaRows[0].id;
+      const dur=Math.floor((Date.now()-new Date(pausaRows[0].inicio).getTime())/1000);
+      await sb(`eng_pausas?id=eq.${pid}`,{method:'PATCH',body:JSON.stringify({fim:new Date().toISOString(),duracao_segundos:dur})});
     }
-    ok.style.display = 'block';
-    setTimeout(() => { closeModal(); }, 1200);
-  } catch(e) { err.textContent = 'Erro: ' + e.message; err.style.display = 'block'; }
-  btn.disabled = false; btn.innerHTML = '<i class="ti ti-player-play" style="font-size:13px;vertical-align:-1px"></i> Criar e iniciar';
+  }
+  await sb(`eng_atividades?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({status:'concluida',tempo_segundos:seg,tempo_pausa_segundos:pausaSeg,concluido_em:new Date().toISOString()})});
+  atividades=atividades.filter(x=>x.id!==id);
+  renderAts();atualizarStats();
 }
 
-// ── DASHBOARD ──
-async function carregarColabs() {
-  try {
-    const rows = await sb('eng_usuarios?perfil=eq.colaborador&select=*&order=nome.asc');
-    todosColabs = rows || [];
-  } catch(e) {}
+async function excluir(id){
+  if(!confirm('Excluir esta atividade?'))return;
+  await sb(`eng_pausas?atividade_id=eq.${id}`,{method:'DELETE',headers:{'Prefer':''}});
+  await sb(`eng_atividades?id=eq.${id}`,{method:'DELETE',headers:{'Prefer':''}});
+  atividades=atividades.filter(x=>x.id!==id);
+  renderAts();atualizarStats();
 }
 
-async function carregarDashboard() {
-  try {
-    const rows = await sb('eng_atividades?status=neq.concluida&order=criado_em.desc&select=*');
-    dashAtividades = (rows || []).map(r => ({ ...r, _elapsed: r.tempo_segundos || 0, _lastStart: r.status === 'running' ? Date.now() : null }));
+// MODAL ATIVIDADE
+function openModalAtiv(){
+  document.getElementById('m-err').style.display='none';
+  document.getElementById('m-ok').style.display='none';
+  if(isGestor){
+    document.getElementById('mu-field').style.display='block';
+    const sel=document.getElementById('m-user');
+    sel.innerHTML='<option value="">— Para mim mesmo —</option>';
+    todosColabs.forEach(c=>{const o=document.createElement('option');o.value=c.id+'|'+c.nome+'|'+c.departamento;o.textContent=c.nome+' ('+c.departamento+')';sel.appendChild(o);});
+    sel.onchange=function(){const v=this.value;preencherTipos(v?v.split('|')[2]:user.departamento);};
+  }
+  document.getElementById('modal-ativ').classList.add('open');
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  if(id==='modal-ativ'){document.getElementById('m-ref').value='';document.getElementById('m-desc').value='';document.getElementById('m-tipo').value='';document.getElementById('m-prio').value='Normal';preencherTipos(user.departamento);}
+}
+function mout(e,id){if(e.target===document.getElementById(id))closeModal(id);}
 
-    const and = dashAtividades.filter(a => a.status === 'running').length;
-    const pau = dashAtividades.filter(a => a.status === 'paused').length;
-    const cols = new Set(dashAtividades.map(a => a.usuario_id)).size;
-    document.getElementById('d-and').textContent = and;
-    document.getElementById('d-pau').textContent = pau;
-    document.getElementById('d-col').textContent = cols;
-    document.getElementById('badge-and').textContent = and;
-
-    const concRows = await sb(`eng_atividades?status=eq.concluida&concluido_em=gte.${new Date().toISOString().slice(0,10)}&select=id`);
-    document.getElementById('d-conc').textContent = (concRows || []).length;
-
-    renderDeptGrid();
-    filtrarDash();
-  } catch(e) {}
+async function criarAtividade(){
+  const tipo=document.getElementById('m-tipo').value;
+  const ref=document.getElementById('m-ref').value.trim();
+  const desc=document.getElementById('m-desc').value.trim();
+  const prio=document.getElementById('m-prio').value;
+  const err=document.getElementById('m-err'),ok=document.getElementById('m-ok');
+  err.style.display='none';ok.style.display='none';
+  if(!tipo||!ref){err.style.display='block';return;}
+  let uid=user.id,unome=user.nome,udept=user.departamento;
+  if(isGestor){const v=document.getElementById('m-user').value;if(v){const p=v.split('|');uid=p[0];unome=p[1];udept=p[2];}}
+  const btn=document.getElementById('btn-criar');btn.disabled=true;btn.textContent='Salvando...';
+  try{
+    const rows=await sb('eng_atividades',{method:'POST',body:JSON.stringify({usuario_id:uid,usuario_nome:unome,departamento:udept,tipo,referencia:ref,descricao:desc,prioridade:prio,status:'running',tempo_segundos:0,tempo_pausa_segundos:0})});
+    if(uid===user.id){atividades.unshift({...rows[0],_elapsed:0,_pauseElapsed:0,_lastStart:Date.now(),_lastPause:null});renderAts();atualizarStats();}
+    ok.style.display='block';setTimeout(()=>closeModal('modal-ativ'),1200);
+  }catch(e){err.textContent='Erro: '+e.message;err.style.display='block';}
+  btn.disabled=false;btn.innerHTML='<i class="ti ti-player-play" style="font-size:13px;vertical-align:-1px"></i> Criar e iniciar';
 }
 
-function renderDeptGrid() {
-  const deptos = ['Orçamentos','Engenharia de Produtos','Engenharia de Processos','Engenharia de Ferramentas'];
-  const grid = document.getElementById('dept-grid');
-  grid.innerHTML = '';
-  deptos.forEach(dept => {
-    const atsD = dashAtividades.filter(a => a.departamento === dept);
-    const dc = DEPT_CLS[dept] || 'dept-orc';
-    const di = DEPT_ICON[dept] || 'ti-tool';
-    const av = DEPT_AV[dept] || ['#F1EFE8','#444441'];
-    const ativos = atsD.filter(a => a.status === 'running').length;
+// DASHBOARD
+async function carregarColabs(){
+  try{const r=await sb('eng_usuarios?perfil=eq.colaborador&select=*&order=nome.asc');todosColabs=r||[];}catch(e){}
+}
 
-    const usuariosMap = {};
-    atsD.forEach(a => {
-      if (!usuariosMap[a.usuario_id]) usuariosMap[a.usuario_id] = { nome: a.usuario_nome, ats: [] };
-      usuariosMap[a.usuario_id].ats.push(a);
-    });
+async function carregarDashboard(){
+  try{
+    const rows=await sb('eng_atividades?status=neq.concluida&order=criado_em.desc&select=*');
+    dashAts=(rows||[]).map(r=>({...r,_elapsed:r.tempo_segundos||0,_pauseElapsed:r.tempo_pausa_segundos||0,_lastStart:r.status==='running'?Date.now():null,_lastPause:r.status==='paused'?Date.now():null}));
+    const and=dashAts.filter(a=>a.status==='running').length;
+    const pau=dashAts.filter(a=>a.status==='paused').length;
+    const cols=new Set(dashAts.map(a=>a.usuario_id)).size;
+    document.getElementById('d-and').textContent=and;
+    document.getElementById('d-pau').textContent=pau;
+    document.getElementById('d-col').textContent=cols;
+    document.getElementById('badge-and').textContent=and;
+    document.getElementById('badge-pau').textContent=pau;
+    const concRows=await sb(`eng_atividades?status=eq.concluida&concluido_em=gte.${new Date().toISOString().slice(0,10)}&select=id`);
+    document.getElementById('d-conc').textContent=(concRows||[]).length;
+    renderDeptGrid();filtrarDash();
+  }catch(e){}
+}
 
-    const pessoasHtml = Object.values(usuariosMap).map(p => {
-      const ativa = p.ats.find(a => a.status === 'running') || p.ats[0];
-      const isRun = ativa && ativa.status === 'running';
-      const ini = p.nome.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+function renderDeptGrid(){
+  const deptos=['Orçamentos','Engenharia de Produtos','Engenharia de Processos','Engenharia de Ferramentas'];
+  const grid=document.getElementById('dept-grid');grid.innerHTML='';
+  deptos.forEach(dept=>{
+    const atsD=dashAts.filter(a=>a.departamento===dept);
+    const dc=DEPT_CLS[dept]||'dept-orc';
+    const di=DEPT_ICON[dept]||'ti-tool';
+    const av=DEPT_AV[dept]||['#F1EFE8','#444441'];
+    const ativos=atsD.filter(a=>a.status==='running').length;
+    const pausados=atsD.filter(a=>a.status==='paused').length;
+    const map={};
+    atsD.forEach(a=>{if(!map[a.usuario_id])map[a.usuario_id]={nome:a.usuario_nome,ats:[]};map[a.usuario_id].ats.push(a);});
+    const pessoasHtml=Object.values(map).map(p=>{
+      const ativa=p.ats.find(a=>a.status==='running')||p.ats.find(a=>a.status==='paused')||p.ats[0];
+      const isRun=ativa&&ativa.status==='running';
+      const isPau=ativa&&ativa.status==='paused';
+      const ini=p.nome.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
       return `<div class="person-row">
         <div class="person-info">
           <div class="person-av" style="background:${av[0]};color:${av[1]}">${ini}</div>
-          <div>
+          <div style="min-width:0">
             <div class="person-name">${p.nome}</div>
-            <div class="person-act">${ativa ? ativa.tipo : 'Sem atividade'}</div>
+            <div class="person-act">${ativa?ativa.tipo+(ativa.motivo_pausa_atual?' · ⏸ '+ativa.motivo_pausa_atual:''):'Sem atividade'}</div>
           </div>
         </div>
-        <div class="person-timer${isRun ? ' on' : ''}" id="dtmr-${ativa ? ativa.id : 'x'}">${ativa ? fmtTime(elapsedNow(ativa)) : '—'}</div>
-      </div>`;
-    }).join('') || '<div style="font-size:12px;color:var(--text3);padding:4px 0">Nenhuma atividade em aberto</div>';
-
-    const card = document.createElement('div');
-    card.className = 'dept-card';
-    card.innerHTML = `
-      <div class="dept-card-header">
-        <div class="dept-card-title">
-          <span class="badge ${dc}"><i class="ti ${di}" style="font-size:13px"></i> ${dept}</span>
+        <div class="person-timers">
+          <div class="ptimer${isRun?' on':isPau?' pau':''}" id="dtmr-${ativa?ativa.id:'x'}">${ativa?fmtTime(elapsedNow(ativa)):'—'}</div>
+          ${isPau?`<div class="pause-mini" id="dptmr-${ativa.id}">${fmtTime(pauseNow(ativa))}</div>`:''}
         </div>
-        <span class="badge b-run">${ativos} ativo${ativos !== 1 ? 's' : ''}</span>
-      </div>
-      <div class="dept-people">${pessoasHtml}</div>`;
+      </div>`;
+    }).join('')||'<div style="font-size:12px;color:var(--text3);padding:4px 0">Nenhuma atividade em aberto</div>';
+    const card=document.createElement('div');card.className='dept-card';
+    card.innerHTML=`<div class="dept-card-hd">
+      <div style="display:flex;align-items:center;gap:8px"><span class="badge ${dc}"><i class="ti ${di}" style="font-size:13px"></i> ${dept}</span></div>
+      <div style="display:flex;gap:6px"><span class="badge b-run">${ativos} ativo${ativos!==1?'s':''}</span>${pausados?`<span class="badge b-pau">${pausados} pausa${pausados!==1?'s':''}</span>`:''}</div>
+    </div><div class="dept-people">${pessoasHtml}</div>`;
     grid.appendChild(card);
   });
 }
 
-function filtrarDash() {
-  const dept = document.getElementById('f-dept').value;
-  const status = document.getElementById('f-status').value;
-  let lista = dashAtividades;
-  if (dept) lista = lista.filter(a => a.departamento === dept);
-  if (status) lista = lista.filter(a => a.status === status);
-  const tbody = document.getElementById('dash-tbody');
-  if (!lista.length) { tbody.innerHTML = '<tr><td colspan="8"><div class="empty" style="padding:1.5rem"><i class="ti ti-search"></i><p>Nenhuma atividade encontrada.</p></div></td></tr>'; return; }
-  tbody.innerHTML = lista.map(a => {
-    const isRun = a.status === 'running';
-    const dc = DEPT_CLS[a.departamento] || 'dept-orc';
-    const pBadge = a.prioridade === 'Urgente' ? 'b-urg' : a.prioridade === 'Alta' ? 'b-alt' : 'b-open';
-    const dt = new Date(a.criado_em).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+function filtrarDash(){
+  const dept=document.getElementById('f-dept').value;
+  const status=document.getElementById('f-status').value;
+  let lista=dashAts;
+  if(dept)lista=lista.filter(a=>a.departamento===dept);
+  if(status)lista=lista.filter(a=>a.status===status);
+  const tbody=document.getElementById('dash-tbody');
+  if(!lista.length){tbody.innerHTML='<tr><td colspan="9"><div class="empty" style="padding:1.5rem"><i class="ti ti-search"></i><p>Nenhuma atividade encontrada.</p></div></td></tr>';return;}
+  tbody.innerHTML=lista.map(a=>{
+    const isRun=a.status==='running';
+    const dc=DEPT_CLS[a.departamento]||'dept-orc';
+    const pBadge=a.prioridade==='Urgente'?'b-urg':a.prioridade==='Alta'?'b-alt':'b-open';
+    const dt=new Date(a.criado_em).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    const pauseInfo=a.motivo_pausa_atual?`<div style="font-size:11px;color:var(--amber);margin-top:2px">⏸ ${a.motivo_pausa_atual}</div>`:'';
     return `<tr>
       <td><b>${a.usuario_nome}</b></td>
       <td><span class="badge ${dc}">${a.departamento}</span></td>
-      <td>${a.tipo}</td>
+      <td>${a.tipo}${pauseInfo}</td>
       <td style="font-weight:500">${a.referencia}</td>
       <td><span class="badge ${pBadge}">${a.prioridade}</span></td>
-      <td><span class="badge ${isRun ? 'b-run' : 'b-pau'}">${isRun ? '● Em andamento' : '⏸ Pausada'}</span></td>
+      <td><span class="badge ${isRun?'b-run':'b-pau'}">${isRun?'● Em andamento':'⏸ Pausada'}</span></td>
       <td style="font-variant-numeric:tabular-nums;font-weight:500" id="dtmr-${a.id}">${fmtTime(elapsedNow(a))}</td>
+      <td style="font-variant-numeric:tabular-nums;color:var(--amber);font-weight:500">${fmtTime(a._pauseElapsed)}</td>
       <td style="color:var(--text2)">${dt}</td>
     </tr>`;
   }).join('');
 }
 
-// ── HISTÓRICO ──
-async function carregarHistorico() {
-  const scope = document.getElementById('h-scope').value || 'proprio';
-  const gestorVeTodos = isGestor && scope === 'todos';
-  const tbody = document.getElementById('hist-tbody');
-  tbody.innerHTML = '<tr><td colspan="7" class="loader">Carregando...</td></tr>';
-  try {
-    const filter = gestorVeTodos
-      ? 'eng_atividades?status=eq.concluida&order=concluido_em.desc&select=*'
-      : `eng_atividades?usuario_id=eq.${user.id}&status=eq.concluida&order=concluido_em.desc&select=*`;
-    const rows = await sb(filter);
-    const hist = rows || [];
-    document.getElementById('st-conc').textContent = hist.length;
-    if (!hist.length) { tbody.innerHTML = '<tr><td colspan="7"><div class="empty" style="padding:1.5rem"><i class="ti ti-history"></i><p>Nenhuma atividade concluída.</p></div></td></tr>'; return; }
-    tbody.innerHTML = hist.map(a => {
-      const dt = a.concluido_em ? new Date(a.concluido_em).toLocaleString('pt-BR') : '—';
-      const pBadge = a.prioridade === 'Urgente' ? 'b-urg' : a.prioridade === 'Alta' ? 'b-alt' : 'b-open';
-      const dc = DEPT_CLS[a.departamento] || 'dept-orc';
+// HISTÓRICO
+async function carregarHistorico(){
+  const scope=document.getElementById('h-scope').value||'proprio';
+  const gestorTodos=isGestor&&scope==='todos';
+  const tbody=document.getElementById('hist-tbody');
+  tbody.innerHTML='<tr><td colspan="8" class="loader">Carregando...</td></tr>';
+  try{
+    const filter=gestorTodos?'eng_atividades?status=eq.concluida&order=concluido_em.desc&select=*':`eng_atividades?usuario_id=eq.${user.id}&status=eq.concluida&order=concluido_em.desc&select=*`;
+    const rows=await sb(filter);
+    const hist=rows||[];
+    if(!hist.length){tbody.innerHTML='<tr><td colspan="8"><div class="empty" style="padding:1.5rem"><i class="ti ti-history"></i><p>Nenhuma atividade concluída.</p></div></td></tr>';return;}
+    tbody.innerHTML=hist.map(a=>{
+      const dt=a.concluido_em?new Date(a.concluido_em).toLocaleString('pt-BR'):'—';
+      const pBadge=a.prioridade==='Urgente'?'b-urg':a.prioridade==='Alta'?'b-alt':'b-open';
+      const dc=DEPT_CLS[a.departamento]||'dept-orc';
+      const pauseSeg=a.tempo_pausa_segundos||0;
       return `<tr>
-        ${gestorVeTodos ? `<td><b>${a.usuario_nome}</b></td><td><span class="badge ${dc}">${a.departamento}</span></td>` : ''}
+        ${gestorTodos?`<td><b>${a.usuario_nome}</b></td><td><span class="badge ${dc}">${a.departamento}</span></td>`:''}
         <td style="font-weight:500">${a.referencia}</td>
         <td>${a.tipo}</td>
         <td><span class="badge ${pBadge}">${a.prioridade}</span></td>
-        <td style="font-variant-numeric:tabular-nums;font-weight:500">${fmtTime(a.tempo_segundos || 0)}</td>
+        <td style="font-variant-numeric:tabular-nums;font-weight:500">${fmtTime(a.tempo_segundos||0)}</td>
+        <td style="font-variant-numeric:tabular-nums;color:${pauseSeg>0?'var(--amber)':'var(--text3)';};font-weight:${pauseSeg>0?'500':'400'}">${pauseSeg>0?fmtTime(pauseSeg):'—'}</td>
         <td style="color:var(--text2)">${dt}</td>
       </tr>`;
     }).join('');
-  } catch(e) { tbody.innerHTML = '<tr><td colspan="7" style="color:var(--red);padding:1rem">Erro: ' + e.message + '</td></tr>'; }
+  }catch(e){tbody.innerHTML='<tr><td colspan="8" style="color:var(--red);padding:1rem">Erro: '+e.message+'</td></tr>';}
 }
 
-document.getElementById('login-senha').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-document.getElementById('login-nome').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+// ANÁLISE DE PAUSAS
+async function carregarPausas(){
+  const dept=document.getElementById('p-dept').value;
+  const dias=parseInt(document.getElementById('p-periodo').value)||7;
+  const desde=new Date(Date.now()-dias*86400000).toISOString();
+  const tbody=document.getElementById('pausas-tbody');
+  document.getElementById('pause-bars').innerHTML='<div class="loader" style="padding:.5rem">Carregando...</div>';
+  tbody.innerHTML='<tr><td colspan="6" class="loader">Carregando...</td></tr>';
+  try{
+    let filter=`eng_pausas?fim=not.is.null&inicio=gte.${desde}&order=inicio.desc&select=*`;
+    if(dept)filter+=`&departamento=eq.${encodeURIComponent(dept)}`;
+    const rows=await sb(filter);
+    const pausas=rows||[];
+    document.getElementById('p-total').textContent=pausas.length;
+    const totalSeg=pausas.reduce((s,p)=>s+(p.duracao_segundos||0),0);
+    document.getElementById('p-tempo').textContent=Math.floor(totalSeg/3600)+'h '+Math.floor((totalSeg%3600)/60)+'m';
+    const contagem={};
+    const tempoMot={};
+    pausas.forEach(p=>{
+      contagem[p.motivo]=(contagem[p.motivo]||0)+1;
+      tempoMot[p.motivo]=(tempoMot[p.motivo]||0)+(p.duracao_segundos||0);
+    });
+    const topMotivo=Object.entries(contagem).sort((a,b)=>b[1]-a[1])[0];
+    document.getElementById('p-top').textContent=topMotivo?topMotivo[0]+' ('+topMotivo[1]+'x)':'—';
+    const maxTempo=Math.max(...Object.values(tempoMot),1);
+    const barsHtml=Object.entries(tempoMot).sort((a,b)=>b[1]-a[1]).map(([mot,seg])=>{
+      const pct=Math.round(seg/maxTempo*100);
+      const h=Math.floor(seg/3600),m=Math.floor((seg%3600)/60);
+      const label=h>0?h+'h '+String(m).padStart(2,'0')+'m':m+'m';
+      return `<div class="pause-bar-row">
+        <div class="pause-bar-label" title="${mot}">${mot}</div>
+        <div class="pause-bar-track"><div class="pause-bar-fill" style="width:${pct}%"></div></div>
+        <div class="pause-bar-val">${label}</div>
+      </div>`;
+    }).join('');
+    document.getElementById('pause-bars').innerHTML=barsHtml||'<div style="font-size:12px;color:var(--text3);padding:.5rem">Nenhum dado no período.</div>';
+    if(!pausas.length){tbody.innerHTML='<tr><td colspan="6"><div class="empty" style="padding:1.5rem"><i class="ti ti-coffee"></i><p>Nenhuma pausa registrada no período.</p></div></td></tr>';return;}
+    tbody.innerHTML=pausas.map(p=>{
+      const dc=DEPT_CLS[p.departamento]||'dept-orc';
+      const dt=new Date(p.inicio).toLocaleString('pt-BR');
+      const dur=p.duracao_segundos?fmtTime(p.duracao_segundos):'em aberto';
+      return `<tr>
+        <td><b>${p.usuario_nome}</b></td>
+        <td><span class="badge ${dc}">${p.departamento}</span></td>
+        <td>${p.motivo}</td>
+        <td style="color:var(--text2)">${p.observacao||'—'}</td>
+        <td style="font-variant-numeric:tabular-nums;font-weight:500;color:var(--amber)">${dur}</td>
+        <td style="color:var(--text2)">${dt}</td>
+      </tr>`;
+    }).join('');
+  }catch(e){tbody.innerHTML='<tr><td colspan="6" style="color:var(--red);padding:1rem">Erro: '+e.message+'</td></tr>';}
+}
+
+document.getElementById('login-senha').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('login-nome').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 </script>
 </body>
 </html>
